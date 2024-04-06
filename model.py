@@ -53,12 +53,12 @@ class Discriminator(nn.Module):
         x = F.leaky_relu(self.conv4(x), alpha)
         gan_out = self.gan(x)
         cls_out = self.cls(x)
-        
+
         return gan_out, cls_out.squeeze()
 
 
 class Generator(nn.Module):
-    def __init__(self, in_channels=3, num_domains=5, image_size=32, out_channels=3, conv_dim=64):
+    def __init__(self, in_channels=3, num_domains=5, image_size=32, out_channels=3, conv_dim=16):
         super(Generator, self).__init__()
         self.image_size = image_size
         self.embed_layer = nn.Embedding(num_domains, image_size**2)
